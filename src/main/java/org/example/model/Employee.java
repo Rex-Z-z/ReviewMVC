@@ -1,13 +1,12 @@
 package org.example.model;
 
-public class Student {
+public class Employee {
     private int id;
     private String name;
     private int age;
     private String department;
-    //sdfadadf
 
-    public Student(int id, String name, int age, String department) {
+    public Employee(int id, String name, int age, String department) {
         this.id = id;
         this.name = name;
         this.age = age;

@@ -2,7 +2,7 @@ package org.example.model;
 
 public class Validation {
     public static boolean isValidId(String id) {
-        return id.matches("\\d+"); // Only digits allowed
+        return id.matches("^[0-9]{1,10}$"); // Only numbers, max 10 digits
     }
 
     public static boolean isValidName(String name) {

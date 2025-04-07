@@ -5,14 +5,14 @@ import org.example.model.*;
 import java.util.List;
 import java.util.Scanner;
 
-public class StudentController {
+public class EmployeeController {
     private StudentDao studentDAO;
 
-    public StudentController() {
-        this.studentDAO = new StudentDaoImpl();
+    public EmployeeController() {
+        this.studentDAO = new EmployeeDaoImpl();
     }
 
-    public void addStudent(Scanner scanner) {
+    public void addEmployee(Scanner scanner) {
         System.out.print("Enter ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -23,23 +23,23 @@ public class StudentController {
         scanner.nextLine();
         System.out.print("Enter Department: ");
         String department = scanner.nextLine();
-        Student student = new Student(id, name, age, department);
-        studentDAO.addStudent(student);
+        Employee student = new Employee(id, name, age, department);
+        studentDAO.addEmployee(student);
     }
 
-    public void viewStudents() {
-        List<Student> students = studentDAO.getAllStudents();
+    public void viewEmployees() {
+        List<Employee> students = studentDAO.getAllEmployees();
         if (students.isEmpty()) {
-            System.out.println("No students found.");
+            System.out.println("No employees found.");
             return;
         }
         System.out.println("\nID | Name | Age | Department");
-        for (Student student : students) {
+        for (Employee student : students) {
             System.out.printf("%d | %s | %d | %s\n", student.getId(), student.getName(), student.getAge(), student.getDepartment());
         }
     }
 
-    public void updateStudent(Scanner scanner) {
+    public void updateEmployee(Scanner scanner) {
         System.out.print("Enter Student ID to update: ");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -50,13 +50,13 @@ public class StudentController {
         scanner.nextLine();
         System.out.print("Enter New Department: ");
         String department = scanner.nextLine();
-        Student student = new Student(id, name, age, department);
-        studentDAO.updateStudent(student);
+        Employee student = new Employee(id, name, age, department);
+        studentDAO.updateEmployee(student);
     }
 
-    public void deleteStudent(Scanner scanner) {
+    public void deleteEmployee(Scanner scanner) {
         System.out.print("Enter Student ID to delete: ");
         int id = scanner.nextInt();
-        studentDAO.deleteStudent(id);
+        studentDAO.deleteEmployee(id);
     }
 }

@@ -27,9 +27,9 @@ import java.sql.SQLException;
  */
 public class Connect {
     // Database credentials - Ensure these are correct before running the application
-    private static final String URL = "jdbc:postgresql://localhost:3456/studentdb"; // Update host/port if necessary
+    private static final String URL = "jdbc:postgresql://localhost:5432/testing"; // Update host/port if necessary
     private static final String USER = "postgres"; // Change according to your PostgreSQL user
-    private static final String PASSWORD = "1234"; // Change according to your PostgreSQL password
+    private static final String PASSWORD = "Reach124404"; // Change according to your PostgreSQL password
 
     /**
      * Establishes and returns a database connection.
