@@ -3,8 +3,11 @@ package org.example.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.example.view.EmployeeView;
 
 public class EmployeeDaoImpl implements EmployeeDao {
+    EmployeeView view = new EmployeeView();
+    
     @Override
     public void addEmployee(Employee employee) {
         try (Connection conn = Connect.getConnection()) {
@@ -15,9 +18,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
             stmt.setInt(3, employee.getAge());
             stmt.setString(4, employee.getDepartment());
             stmt.executeUpdate();
-            System.out.println("Employee added successfully!");
+            view.showSuccessMessage("Employee added successfully!\n");
         } catch (SQLException e) {
-            System.out.println("Database error: " + e.getMessage());
+            view.showErrorMessage("Database error: " + e.getMessage());
         }
     }
 
@@ -31,7 +34,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 students.add(new Employee(rs.getInt("id"), rs.getString("name"), rs.getInt("age"), rs.getString("department")));
             }
         } catch (SQLException e) {
-            System.out.println("Database error: " + e.getMessage());
+            view.showErrorMessage("Database error: " + e.getMessage());
         }
         return students;
     }
@@ -47,12 +50,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
             stmt.setInt(4, employee.getId());
             int rows = stmt.executeUpdate();
             if (rows > 0) {
-                System.out.println("Employee updated successfully!");
+                view.showSuccessMessage("Employee updated successfully!\n");
             } else {
-                System.out.println("Employee not found!");
+                view.showErrorMessage("Employee not found!\n");
             }
         } catch (SQLException e) {
-            System.out.println("Database error: " + e.getMessage());
+            view.showErrorMessage("Database error: " + e.getMessage());
         }
     }
 
@@ -64,12 +67,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
             stmt.setInt(1, id);
             int rows = stmt.executeUpdate();
             if (rows > 0) {
-                System.out.println("Employee deleted successfully!");
+                view.showSuccessMessage("Employee deleted successfully!\n");
             } else {
-                System.out.println("Employee not found!");
+                view.showErrorMessage("Employee not found!\n");
             }
         } catch (SQLException e) {
-            System.out.println("Database error: " + e.getMessage());
+            view.showErrorMessage("Database error: " + e.getMessage());
         }
     }
 
@@ -84,7 +87,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 id = rs.getInt("id");
             }
         } catch (SQLException e) {
-            System.out.println("Database error: " + e.getMessage());
+            view.showErrorMessage("Database error: " + e.getMessage());
         }
         return id;
     }
